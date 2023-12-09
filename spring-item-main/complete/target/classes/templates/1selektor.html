@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Baugruppenverwendung definieren</title>
+    </head>
+    <body>
+        <h2>Baugruppenverwendung definieren</h2>
+
+        <!-- Baugruppenauswahl -->
+        <label for="baugruppe">Baugruppe:</label>
+        <select id="baugruppe" name="baugruppe">
+            <!-- Optionen werden dynamisch geladen -->
+        </select>
+
+        <!-- Bauteilauswahl -->
+        <label for="bauteil">Bauteil:</label>
+        <select id="bauteil" name="bauteil">
+            <!-- Optionen werden dynamisch geladen -->
+        </select>
+
+        <!-- Verwendungsdaten -->
+        <label for="menge">Menge:</label>
+        <input type="number" id="menge" name="menge" min="1" required="required">
+
+        <label for="position">Position/Rolle:</label>
+        <input type="text" id="position" name="position" required="required">
+
+        <!-- Aktionen -->
+        <button onclick="verwendungHinzufuegen()">Verwendung hinzufügen</button>
+
+        <!-- Anzeige der definierten Verwendungen -->
+        <h3>Definierte Verwendungen:</h3>
+        <ul id="verwendungsListe">
+            <!-- Hier werden die Verwendungen dynamisch angezeigt -->
+        </ul>
+
+    </body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Item gelöscht</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <a th:href="@{/home}">Home</a>
+    <p th:text="|Item mit der Id: ${id} gelöscht!|" />
+    <a th:href="@{/items-gui/list}">zurück</a>
+</body>
+</html>

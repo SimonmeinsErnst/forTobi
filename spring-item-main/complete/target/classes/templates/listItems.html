@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Liste aller Items</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <a th:href="@{/home}">Home</a>
+<h2>Liste der Items</h2>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Beschreibung</td>
+        <td>Material</td>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.nomenclature}">Item Name</td>
+        <td th:text="${item.description}">Item Beschreibung</td>
+        <td th:text="${item.material}">Item Material</td>      
+        <td th:text="${item.id}"></td>  
+        
+        <td><a th:href="@{/items-gui/{id}/delete(id=${item.id})}">löschen</a></td>
+        <td><a th:href="@{/items-gui/{id}/show(id=${item.id})}">anzeigen</a></td>
+
+    </tr>
+</table>
+
+<a th:href="@{/items-gui}">zurück</a>
+</body>
+</html>

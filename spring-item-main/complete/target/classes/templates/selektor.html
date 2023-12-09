@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Baugruppenverwendung definieren</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    </head>
+
+    <body>
+        <a th:href="@{/home}">Home</a>
+        <h2>Baugruppen:</h2>
+        <ul id="new-item">
+            <li>Auto</li>
+            <li>Achse</li>
+            <li>Rad</li>
+            <li>Haube</li>
+            <li>Steckachse</li>
+        </ul>
+
+        <h2>Bauteile:</h2>
+        <ul id="new-object-list">
+            <li th:each="item : ${items}">
+                <span th:text="${item.nomenclature}"></span>
+            </li>
+        </ul>
+
+        <h2>Zuweisung:</h2>
+
+        <label>Wähle die Baugruppe:</label>
+        <select id="item-select">
+
+            <option>Auto</option>
+            <option>Achse</option>
+            <option>Rad</option>
+            <option>Haube</option>
+            <option>Steckachse</option>
+        </select>
+
+        <label>Wähle das Objekt:</label>
+        <select id="object-select">
+            <option
+                th:each="item : ${items}"
+                th:value="${item.id}"
+                th:text="${item.nomenclature}"></option>
+
+        </select>
+
+        <button type="submit">zuweisen</button>
+        <h2>Definierte Baugruppen:</h2>
+        <ul id="verwendungsListe">
+            <li>Auto: Achse, Rad, Haube</li>
+            <li>Achse: Steckachse</li>
+
+    </body>
+</html>

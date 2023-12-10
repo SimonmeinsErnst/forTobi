@@ -7,49 +7,71 @@
     </head>
 
     <body>
-        <a th:href="@{/home}">Home</a>
-        <h2>Baugruppen:</h2>
-        <ul id="new-item">
-            <li>Auto</li>
-            <li>Achse</li>
-            <li>Rad</li>
-            <li>Haube</li>
-            <li>Steckachse</li>
-        </ul>
+        <form method="post">
+            <a th:href="@{/home}">Home</a>
 
-        <h2>Bauteile:</h2>
-        <ul id="new-object-list">
-            <li th:each="item : ${items}">
-                <span th:text="${item.nomenclature}"></span>
-            </li>
-        </ul>
+            <h2>Baugruppen:</h2>
+            <ul id="new-item">
+                <li>Auto</li>
+                <li>Achse</li>
+                <li>Rad</li>
+                <li>Haube</li>
+                <li>Steckachse</li>
+            </ul>
 
-        <h2>Zuweisung:</h2>
+            <h2>Bauteile:</h2>
+            <ul id="new-object-list">
+                <li th:each="item : ${items}">
+                    <span th:text="${item.nomenclature}"></span>
+                </li>
+            </ul>
 
-        <label>Wähle die Baugruppe:</label>
-        <select id="item-select">
+            <h2>Zuweisung:</h2>
 
-            <option>Auto</option>
-            <option>Achse</option>
-            <option>Rad</option>
-            <option>Haube</option>
-            <option>Steckachse</option>
-        </select>
+            <label>Wähle die Baugruppe:</label>
+            <select id="item-select" name="itemSelect">
 
-        <label>Wähle das Objekt:</label>
-        <select id="object-select">
-            <option
-                th:each="item : ${items}"
-                th:value="${item.id}"
-                th:text="${item.nomenclature}"></option>
+                <option>Auto</option>
+                <option>Achse</option>
+                <option>Rad</option>
+                <option>Haube</option>
+                <option>Steckachse</option>
+            </select>
 
-        </select>
+            <label>Wähle das Objekt:</label>
+            <select id="object-select" name="objectSelect">
+                <option
+                    th:each="item : ${items}"
+                    th:value="${item.nomenclature}"
+                    th:text="${item.nomenclature}"></option>
 
-        <button type="submit">zuweisen</button>
-        <h2>Definierte Baugruppen:</h2>
-        <ul id="verwendungsListe">
-            <li>Auto: Achse, Rad, Haube</li>
-            <li>Achse: Steckachse</li>
+            </select>
 
+            <button>zuweisen</button>
+
+            <h2>Definierte Baugruppen:</h2>
+
+            <!--onclick="ergebnisAusgeben()" <script> function ergebnisAusgeben() { // Die
+            Werte aus den Select-Elementen auslesen und zu einem String zusammenfügen var
+            item = document .getElementById("item-select") .value; var object = document
+            .getElementById("object-select") .value; var fusedAssignment = item + " enthält
+            " + object; // Ein neues Listenelement erstellen var liElement =
+            document.createElement("li"); // Den Inhalt in das Listenelement einfügen
+            liElement.appendChild(document.createTextNode(fusedAssignment)); // Das
+            Listenelement der Ergebnisliste hinzufügen document
+            .getElementById("verwendungsListe") .appendChild(liElement); // Einen
+            "Löschen"-Button zum Listenelement hinzufügen var deleteButton =
+            document.createElement("button");
+            deleteButton.appendChild(document.createTextNode("Löschen"));
+            deleteButton.onclick = function () { removeItem(liElement); };
+            liElement.appendChild(deleteButton); function removeItem(item) { document
+            .getElementById("verwendungsListe") .removeChild(item); } } </script> <ul> <li
+            th:each="assignment : ${fusedAssignments}" th:text="${assignment}"></li> </ul>
+            -->
+            <ul>
+                <li th:each="assignment : ${fusedAssignments}" th:text="${assignment}"></li>
+            </ul>
+        </form>
     </body>
+
 </html>

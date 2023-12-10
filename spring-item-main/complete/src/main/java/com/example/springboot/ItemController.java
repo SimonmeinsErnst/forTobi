@@ -1,5 +1,7 @@
 package com.example.springboot;
 
+import java.util.ArrayList;
+//import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -12,9 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import inginf.Item;
-//import inginf.ItemInstance;
 import jakarta.servlet.http.HttpSession;
-//import org.springframework.web.bind.annotation.RequestBody;
+
+
+
+
+
+
+
 
 
 @Controller
@@ -84,6 +91,7 @@ public class ItemController {
             }
         return "showItem";
     }
+    /*
 
     @GetMapping("/items-selektor")
     public String selektor(Model model) {
@@ -91,20 +99,71 @@ public class ItemController {
         model.addAttribute("items", items);
         return "selektor";
     }
-/*
-    @PostMapping("/items-selektor")
-    public String assignItem(
-        Model model,HttpSession session, @RequestParam Map<String, String> body) {
-        int id = Integer.parseInt(body.get("id"));
-        String name = body.get("name");
-        for (Item item : getAppStore().getItemStore()) 
-            if (item.Id == id) {
-                session.setAttribute(name, item);
-                break;
-            }
+
+    
+
+   
+
+
+
+@PostMapping("/items-selektor")
+public String assignItem(@RequestParam String itemSelect, @RequestParam String objectSelect, Model model) {
+    List<Item> items = getAppStore().getItemStore();
+
+    // Holen Sie die Werte aus den RequestParametern
+    String assignment = itemSelect + " enthält " + objectSelect;
+
+    // Fügen Sie das neue Assignment dem Modell hinzu
+    model.addAttribute("assignment", assignment);
+    model.addAttribute("items", items);
+
+    return "selektor";
+}
+*/
+
+@GetMapping("/items-selektor")
+    public String showSelektor(Model model) {
+        List<Item> items = getAppStore().getItemStore();
+        model.addAttribute("items", items);
+
+        // Holen Sie die vorhandenen Zuweisungen aus dem Modell
+        List<String> fusedAssignments = (List<String>) model.getAttribute("fusedAssignments");
+
+        // Wenn die Liste noch nicht vorhanden ist, erstellen Sie eine neue ArrayList
+        if (fusedAssignments == null) {
+            fusedAssignments = new ArrayList<>();
+        }
+
+        // Setzen Sie die Liste im Modell
+        model.addAttribute("fusedAssignments", fusedAssignments);
+
         return "selektor";
     }
-    */
+
+    @PostMapping("/items-selektor")
+    public String assignItem(@RequestParam String itemSelect, @RequestParam String objectSelect, Model model) {
+        List<Item> items = getAppStore().getItemStore();
+
+        // Holen Sie die vorhandenen Zuweisungen aus dem Modell
+        List<String> fusedAssignments = (List<String>) model.getAttribute("fusedAssignments");
+
+        // Wenn die Liste noch nicht vorhanden ist, erstellen Sie eine neue ArrayList
+        if (fusedAssignments == null) {
+            fusedAssignments = new ArrayList<>();
+        }
+
+        // Fügen Sie das neue Assignment hinzu
+        String newAssignment = itemSelect + " enthält " + objectSelect;
+        fusedAssignments.add(newAssignment);
+
+        // Setzen Sie die aktualisierte Liste im Modell
+        model.addAttribute("fusedAssignments", fusedAssignments);
+        model.addAttribute("items", items);
+
+        return "selektor";
+    }
+
+
 
     @GetMapping("/home")
     public String home(Model model) {
